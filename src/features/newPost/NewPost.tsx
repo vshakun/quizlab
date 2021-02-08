@@ -14,7 +14,7 @@ export function NewPost(props: any) {
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const [text, setText] = useState('');
 
-    if (currentUserUUID === null) {
+    if (!currentUserUUID) {
         return (
             <div>
                 <Redirect to='/'/>

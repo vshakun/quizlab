@@ -12,7 +12,7 @@ export function Feed() {
     const users = useSelector(selectUsers);
     const posts = useSelector(selectPosts);
 
-    if (currentUserUUID === null) {
+    if (!currentUserUUID) {
         return (
             <Redirect to='/'/>
         )
@@ -40,10 +40,10 @@ export function Feed() {
     const currentUserSubscriptions = currentUser.subscriptions.map((uuid) => users[uuid].name);
     const subscriptionPostsArray = postsArray.filter(([uuid, post]) => post.author === currentUserName || currentUserSubscriptions.includes(post.author));
     const postsComponentsArray = postsArray.map(([uuid, post]) => {
-        return <Post key={uuid} post={post}/>
+        return <Post uuid={uuid} post={post}/>
     });
     const subscriptionPostsComponentsArray = subscriptionPostsArray.map(([uuid, post]) => {
-        return <Post key={uuid} post={post}/>
+        return <Post uuid={uuid} post={post}/>
     });
 
 

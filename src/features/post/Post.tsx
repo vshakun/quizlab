@@ -2,7 +2,7 @@ import React from "react";
 import {addUserIfNotExists, selectCurrentUserUUID} from "../auth/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {likePost} from '../feed/feedSlice';
-import {Link} from "react-router-dom";
+import styles from './Post.module.css';
 
 export interface IPost {
     author: string,
@@ -21,11 +21,11 @@ export function Post(props: any) {
     const currentUserUUID = useSelector(selectCurrentUserUUID);
 
     return (
-        <div>
-            <p>{props.post.author}</p>
-            <p>{props.post.text}</p>
-            <p>Liked: {props.post.liked.join(', ')}</p>
-            <button
+        <div className={styles.post}>
+            <p className={styles.author}>{props.post.author}</p>
+            <p className={styles.text}>{props.post.text}</p>
+            <p className={styles.text}>Понравилось: {props.post.liked.join(', ')}</p>
+            <button className={styles.heart}
                 onClick={() => {
                     const userPost: IUserPost = {
                         userUUID: currentUserUUID || '',

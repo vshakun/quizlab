@@ -24,7 +24,7 @@ export function Profile() {
     const posts = useSelector(selectPosts);
 
     const currentUserUUID = useSelector(selectCurrentUserUUID);
-    if (currentUserUUID === null) {
+    if (!currentUserUUID) {
         return (
             <div>
                 <Redirect to='/'/>
@@ -52,15 +52,13 @@ export function Profile() {
         return <Post uuid={uuid} post={post} />
     });
 
-
-
     return (
         <div>
             <p>{userName}, <a href={'/subscriptions'}>{userSubscriptionCount} подписок</a>, <a
                 href={'/subscriptions'}>{userSubscriptionCount} подписчиков</a></p>
-            <div>
-                <p>{userName}</p>
-            </div>
+            {/*<div>*/}
+            {/*    <p>{userName}</p>*/}
+            {/*</div>*/}
             <div>
                 <button className={currentUserUUID === uuid ? styles.hiddenButton : styles.button}
                     onClick={
@@ -80,7 +78,7 @@ export function Profile() {
                     <Link to={"/feed"}>В ленту</Link>
                 </div>
                 <div>
-                    <Link to={"/newPost"}>+</Link>
+                    <Link to={"/newPost"}>Добавить пост</Link>
                 </div>
             </div>
         </div>
