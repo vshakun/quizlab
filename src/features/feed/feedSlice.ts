@@ -38,17 +38,6 @@ export const feedSlice = createSlice({
 export const {addPost, likePost} = feedSlice.actions;
 
 export const selectPosts = (state: RootState) => {
-    // const updatePost = (post: IPost): IPost => {
-    //     return {
-    //         author: state.auth.users[post.author].name,
-    //         text: post.text,
-    //         liked: post.liked.map((uuid) => state.auth.users[uuid].name),
-    //         timeStamp: post.timeStamp
-    //     }
-    // }
-    //
-    // return Object.fromEntries(Object.entries(state.feed.posts).map(([uuid, post]) => [uuid, updatePost(post)]));
-
     return state.feed.posts;
 };
 
