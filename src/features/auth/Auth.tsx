@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {addUserIfNotExists} from './authSlice';
 import styles from './Auth.module.css';
+import {Link} from 'react-router-dom';
 
 export function Auth() {
     const dispatch = useDispatch();
@@ -22,15 +23,29 @@ export function Auth() {
                     />
                 </label>
                 <div>
-                    <button
-                        className={styles.button}
-                        disabled={name.length <= 3}
-                        onClick={() =>
-                            dispatch(addUserIfNotExists(String(name) || ''))
+                    {/*<button*/}
+                    {/*    className={styles.button}*/}
+                    {/*    disabled={name.length <= 3}*/}
+                    {/*    onClick={*/}
+                    {/*        () => {*/}
+                    {/*            dispatch(addUserIfNotExists(String(name) || ''));*/}
+                    {/*            window.location.href = '/feed';*/}
+                    {/*        }*/}
+                    {/*    }*/}
+                    {/*>*/}
+                    {/*    Продолжить*/}
+                    {/*</button>*/}
+
+                    <Link
+                        to={name.length > 3 ? '/feed' : '#'}
+                        onClick={
+                            () => {
+                                dispatch(addUserIfNotExists(String(name) || ''));
+                            }
                         }
                     >
                         Продолжить
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
