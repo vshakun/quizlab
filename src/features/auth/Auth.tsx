@@ -23,19 +23,6 @@ export function Auth() {
                     />
                 </label>
                 <div>
-                    {/*<button*/}
-                    {/*    className={styles.button}*/}
-                    {/*    disabled={name.length <= 3}*/}
-                    {/*    onClick={*/}
-                    {/*        () => {*/}
-                    {/*            dispatch(addUserIfNotExists(String(name) || ''));*/}
-                    {/*            window.location.href = '/feed';*/}
-                    {/*        }*/}
-                    {/*    }*/}
-                    {/*>*/}
-                    {/*    Продолжить*/}
-                    {/*</button>*/}
-
                     <Link
                         to={'/feed'}
                         onClick={

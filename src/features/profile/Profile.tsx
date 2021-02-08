@@ -1,7 +1,7 @@
 import {Post, IPost} from '../post/Post';
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentUserUUID, selectUsers, subscribeUser} from "../auth/authSlice";
+import {selectCurrentUserUUID, selectUsers, subscribeUser, logOut} from "../auth/authSlice";
 import {useParams, Link, Redirect} from "react-router-dom";
 import {addPost, selectPosts} from "../feed/feedSlice";
 import styles from "./Profile.module.css";
@@ -69,6 +69,17 @@ export function Profile() {
                 >
                     {users[currentUserUUID].subscriptions.includes(profileUUID) ? 'Отписаться' : 'Подписаться'}
                 </button>
+                <Link to={'/'}>
+                    <button className={currentUserUUID !== profileUUID ? styles.hiddenButton : styles.button}
+                            onClick={
+                                () => {
+                                    dispatch(logOut());
+                                }
+                            }
+                    >
+                        Выйти
+                    </button>
+                </Link>
             </div>
             <ul>
                 {listPosts}

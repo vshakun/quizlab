@@ -11,13 +11,11 @@ interface AuthState {
     users: {
         [key: string]: IUser;
     };
-    loggedIn: boolean;
-    currentUserUUID: string | null;
+    currentUserUUID: string | null; // string if logged in, null otherwise
 }
 
 const initialState: AuthState = {
     users: {},
-    loggedIn: false,
     currentUserUUID: null
 };
 
@@ -38,7 +36,6 @@ export const authSlice = createSlice({
             } else {
                 state.currentUserUUID = String(key);
             }
-            state.loggedIn = true;
         },
         subscribeUser: (state, action: PayloadAction<string>) => {
             const subscriptionUserUUID = action.payload;
@@ -53,15 +50,17 @@ export const authSlice = createSlice({
             } else {
                 state.users[currentUserUUID].subscriptions.push(subscriptionUserUUID);
             }
+        },
+        logOut: state => {
+            state.currentUserUUID = null;
         }
     }
 });
 
-export const {addUserIfNotExists, subscribeUser} = authSlice.actions;
+export const {addUserIfNotExists, subscribeUser, logOut} = authSlice.actions;
 
 
 export const selectUsers = (state: RootState) => state.auth.users;
-export const selectLoggedIn = (state: RootState) => state.auth.loggedIn;
 export const selectCurrentUserUUID = (state: RootState) => state.auth.currentUserUUID;
 
 export default authSlice.reducer;
