@@ -52,7 +52,7 @@ export function Profile() {
     })
 
     const listPosts = postsArray.map(([uuid, post]) => {
-        return <Post uuid={uuid} post={post} />
+        return <Post key={uuid} uuid={uuid} post={post} />
     });
 
     return (

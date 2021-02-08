@@ -40,10 +40,10 @@ export function Feed() {
     const currentUserSubscriptions = currentUser.subscriptions.map((uuid) => users[uuid].name);
     const subscriptionPostsArray = postsArray.filter(([uuid, post]) => post.author === currentUserName || currentUserSubscriptions.includes(post.author));
     const postsComponentsArray = postsArray.map(([uuid, post]) => {
-        return <Post uuid={uuid} post={post}/>
+        return <Post key={uuid} uuid={uuid} post={post}/>
     });
     const subscriptionPostsComponentsArray = subscriptionPostsArray.map(([uuid, post]) => {
-        return <Post uuid={uuid} post={post}/>
+        return <Post key={uuid} uuid={uuid} post={post}/>
     });
 
 
