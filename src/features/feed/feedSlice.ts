@@ -1,16 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {v4} from 'node-uuid';
-import {IPost} from '../post/Post';
+import {IPost, IUserPost} from '../post/Post';
+
+type IPosts = {
+    [key: string]: IPost;
+};
 
 interface FeedState {
-    posts: {
-        [key: string]: IPost;
-    };
+    posts: IPosts;
 }
 
 const initialState: FeedState = {
-    posts: {}
+    posts: {},
 };
 
 export const feedSlice = createSlice({
@@ -21,16 +23,31 @@ export const feedSlice = createSlice({
             const post = action.payload;
             const uuid = v4();
             state.posts[uuid] = post;
+        },
+        likePost: (state, action: PayloadAction<IUserPost>) => {
+            const {userUUID, postUUID} = action.payload;
+            if (state.posts[postUUID].liked.includes(userUUID)) {
+                state.posts[postUUID].liked = state.posts[postUUID].liked.filter(uuid => uuid !== userUUID);
+            } else {
+                state.posts[postUUID].liked.push(userUUID);
+            }
         }
     }
 });
 
-export const {addPost} = feedSlice.actions;
+export const {addPost, likePost} = feedSlice.actions;
 
+export const selectPosts = (state: RootState) => {
+    const updatePost = (post: IPost): IPost => {
+        return {
+            author: state.auth.users[post.author].name,
+            text: post.text,
+            liked: post.liked.map((uuid) => state.auth.users[uuid].name),
+            timeStamp: post.timeStamp
+        }
+    }
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.auth.value)`
-export const selectPosts = (state: RootState) => state.feed.posts;
+    return Object.fromEntries(Object.entries(state.feed.posts).map(([uuid, post]) => [uuid, updatePost(post)]));
+};
 
 export default feedSlice.reducer;
