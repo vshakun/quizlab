@@ -34,6 +34,9 @@ export function Profile() {
 
     const userName = users[uuid].name;
     const userSubscriptionCount = users[uuid].subscriptions.length;
+    const userSubscribersCount = Object.entries(users).reduce((count, [_, user]) => {
+        return user.subscriptions.includes(uuid) ? count + 1 : count;
+    }, 0);
 
     const userPosts = Object.fromEntries(Object.entries(posts).filter(([uuid, post]) => post.author === userName));
 
@@ -55,7 +58,7 @@ export function Profile() {
     return (
         <div>
             <p>{userName}, <a href={'/subscriptions'}>{userSubscriptionCount} подписок</a>, <a
-                href={'/subscriptions'}>{userSubscriptionCount} подписчиков</a></p>
+                href={'/subscribers'}>{userSubscribersCount} подписчиков</a></p>
             {/*<div>*/}
             {/*    <p>{userName}</p>*/}
             {/*</div>*/}
