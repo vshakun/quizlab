@@ -37,14 +37,14 @@ export function Auth() {
                     {/*</button>*/}
 
                     <Link
-                        to={name.length > 3 ? '/feed' : '#'}
+                        to={'/feed'}
                         onClick={
                             () => {
                                 dispatch(addUserIfNotExists(String(name) || ''));
                             }
                         }
                     >
-                        Продолжить
+                        <button disabled={name.length <= 3}>Продолжить</button>
                     </Link>
                 </div>
             </div>
