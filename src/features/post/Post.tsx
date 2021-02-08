@@ -22,10 +22,7 @@ export function Post(props: any) {
 
     return (
         <div>
-            <Link
-                to={`/profile/${props.post.author}`}>
-                <p>{props.post.author}</p>
-            </Link>
+            <p>{props.post.author}</p>
             <p>{props.post.text}</p>
             <p>Liked: {props.post.liked.join(', ')}</p>
             <button
