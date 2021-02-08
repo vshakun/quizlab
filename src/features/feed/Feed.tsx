@@ -18,6 +18,13 @@ export function Feed() {
         )
     }
 
+    const currentUser = users[currentUserUUID];
+    if (!currentUserUUID) {
+        return (
+            <Redirect to='/'/>
+        )
+    }
+
     let postsArray = Object.entries(posts);
     postsArray.sort(([k1, v1], [k2, v2]) => {
         if (v1.timeStamp < v2.timeStamp) {
@@ -28,8 +35,9 @@ export function Feed() {
             return 0;
         }
     });
-    const currentUserName = users[currentUserUUID].name;
-    const currentUserSubscriptions = users[currentUserUUID].subscriptions.map((uuid) => users[uuid].name);
+
+    const currentUserName = currentUser.name;
+    const currentUserSubscriptions = currentUser.subscriptions.map((uuid) => users[uuid].name);
     const subscriptionPostsArray = postsArray.filter(([uuid, post]) => post.author === currentUserName || currentUserSubscriptions.includes(post.author));
     const postsComponentsArray = postsArray.map(([uuid, post]) => {
         return <Post key={uuid} post={post}/>
