@@ -1,0 +1,24 @@
+.post {
+    border-style: solid;
+    border-color: dodgerblue;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.text {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.heart {
+    color: red;
+    border: 0;
+    background: none;
+    size: 20px;
+}
