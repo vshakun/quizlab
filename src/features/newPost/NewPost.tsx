@@ -30,8 +30,7 @@ export function NewPost(props: any) {
                     value={text}
                     onChange={e => setText(e.target.value)}
                 />
-                <Link
-                    to={`/profile/${currentUserUUID}`}
+                <button
                     onClick={
                         () => {
                             const post: IPost = {
@@ -45,9 +44,11 @@ export function NewPost(props: any) {
                     }
                 >
                     Опубликовать
-                </Link>
+                </button>
             </div>
-            <button>В профиль</button>
+            <Link to={`/profile/${currentUserUUID}`}>
+                <button>В профиль</button>
+            </Link>
         </div>
     )
 }
