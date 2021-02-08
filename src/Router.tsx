@@ -11,7 +11,7 @@ export function Router() {
             <div>
                 <Route exact path="/" component={Auth}/>
                 <Route path="/feed" component={Feed}/>
-                <Route path="/profile/:uuid" component={Profile}/>
+                <Route path="/profile/:profileUUID" component={Profile}/>
                 <Route path="/newPost" component={NewPost} />
             </div>
         </BrowserRouter>

@@ -18,7 +18,7 @@ interface IProfile {
 
 export function Profile() {
     const dispatch = useDispatch();
-    const {uuid} = useParams();
+    const {profileUUID} = useParams();
 
     const users = useSelector(selectUsers);
     const posts = useSelector(selectPosts);
@@ -32,13 +32,13 @@ export function Profile() {
         )
     }
 
-    const userName = users[uuid].name;
-    const userSubscriptionCount = users[uuid].subscriptions.length;
+    const userName = users[profileUUID].name;
+    const userSubscriptionCount = users[profileUUID].subscriptions.length;
     const userSubscribersCount = Object.entries(users).reduce((count, [_, user]) => {
-        return user.subscriptions.includes(uuid) ? count + 1 : count;
+        return user.subscriptions.includes(profileUUID) ? count + 1 : count;
     }, 0);
 
-    const userPosts = Object.fromEntries(Object.entries(posts).filter(([uuid, post]) => post.author === userName));
+    const userPosts = Object.fromEntries(Object.entries(posts).filter(([_, post]) => post.author === profileUUID));
 
     const postsArray = Object.entries(userPosts);
     postsArray.sort(([k1, v1], [k2,v2]) => {
@@ -59,18 +59,15 @@ export function Profile() {
         <div>
             <p>{userName}, <a href={'/subscriptions'}>{userSubscriptionCount} подписок</a>, <a
                 href={'/subscribers'}>{userSubscribersCount} подписчиков</a></p>
-            {/*<div>*/}
-            {/*    <p>{userName}</p>*/}
-            {/*</div>*/}
             <div>
-                <button className={currentUserUUID === uuid ? styles.hiddenButton : styles.button}
+                <button className={currentUserUUID === profileUUID ? styles.hiddenButton : styles.button}
                     onClick={
                         () => {
-                            dispatch(subscribeUser(uuid));
+                            dispatch(subscribeUser(profileUUID));
                         }
                     }
                 >
-                    {users[currentUserUUID].subscriptions.includes(uuid) ? 'Отписаться' : 'Подписаться'}
+                    {users[currentUserUUID].subscriptions.includes(profileUUID) ? 'Отписаться' : 'Подписаться'}
                 </button>
             </div>
             <ul>
