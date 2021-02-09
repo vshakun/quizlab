@@ -1,5 +1,5 @@
 export interface IMoreFlattenedStore {
-    [key:string] : Array<string> | string | number | null
+    [key: string]: Array<string> | string | number | null
 }
 
 export const moreFlattenedStoreExample: IMoreFlattenedStore = {

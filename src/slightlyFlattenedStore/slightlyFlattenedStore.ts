@@ -58,7 +58,7 @@ export const slightlyFlattenedStoreExample: ISlightlyFlattenedStore = {
         'd304ee44-d2dd-4c7f-a994-f4e6a8922a45': []
     },
     postTimeStamps: {
-        '1ef764cf-726c-45d2-927d-b888a0255169':  1612820896199,
+        '1ef764cf-726c-45d2-927d-b888a0255169': 1612820896199,
         '78de02ef-babc-4408-ab36-5266e3a79f1d': 1612821234430,
         'd304ee44-d2dd-4c7f-a994-f4e6a8922a45': 1612830431830
     }
