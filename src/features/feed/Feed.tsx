@@ -37,7 +37,9 @@ export function Feed() {
     });
 
     const subscriptionPostsArray = postsArray
-        .filter(([uuid, post]) => post.author === currentUserUUID || currentUser.subscriptions.includes(post.author));
+        .filter(([uuid, post]) =>
+            post.author === currentUserUUID || currentUser.subscriptions.includes(post.author)
+        );
 
     const postsComponentsArray = postsArray.map(([uuid, post]) => {
         return <Post key={uuid} uuid={uuid} post={post}/>

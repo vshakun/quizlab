@@ -1,5 +1,5 @@
 import React from "react";
-import {addUserIfNotExists, logOut, selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
+import {selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {likePost, removePost} from '../feed/feedSlice';
 import styles from './Post.module.css';

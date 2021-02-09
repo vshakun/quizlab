@@ -38,7 +38,8 @@ export function Profile() {
         return user.subscriptions.includes(profileUUID) ? count + 1 : count;
     }, 0);
 
-    const userPosts = Object.fromEntries(Object.entries(posts).filter(([_, post]) => post.author === profileUUID));
+    const userPosts = Object.fromEntries(Object.entries(posts)
+        .filter(([_, post]) => post.author === profileUUID));
 
     const postsArray = Object.entries(userPosts);
     postsArray.sort(([k1, v1], [k2,v2]) => {
@@ -57,8 +58,10 @@ export function Profile() {
 
     return (
         <div>
-            <p>{userName}, <Link to={`/subscriptions/${profileUUID}`}>{userSubscriptionCount} подписок</Link>, <Link
-                to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link></p>
+            <p>
+                {userName},
+                <Link to={`/subscriptions/${profileUUID}`}>{userSubscriptionCount} подписок</Link>,
+                <Link to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link></p>
             <div>
                 <button className={currentUserUUID === profileUUID ? styles.hiddenButton : styles.button}
                     onClick={
@@ -67,7 +70,10 @@ export function Profile() {
                         }
                     }
                 >
-                    {users[currentUserUUID].subscriptions.includes(profileUUID) ? 'Отписаться' : 'Подписаться'}
+                    {
+                        users[currentUserUUID].subscriptions.includes(profileUUID) ?
+                        'Отписаться' : 'Подписаться'
+                    }
                 </button>
                 <Link to={'/'}>
                     <button className={currentUserUUID !== profileUUID ? styles.hiddenButton : styles.button}

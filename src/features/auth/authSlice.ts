@@ -46,7 +46,8 @@ export const authSlice = createSlice({
             }
 
             if (state.users[currentUserUUID].subscriptions.includes(subscriptionUserUUID)) {
-                state.users[currentUserUUID].subscriptions = state.users[currentUserUUID].subscriptions.filter(uuid => uuid !== subscriptionUserUUID);
+                state.users[currentUserUUID].subscriptions = state.users[currentUserUUID].subscriptions
+                    .filter(uuid => uuid !== subscriptionUserUUID);
             } else {
                 state.users[currentUserUUID].subscriptions.push(subscriptionUserUUID);
             }

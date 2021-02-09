@@ -7,11 +7,15 @@ export function PeopleList(props: any) {
     const list = props.list;
     const profileUUID = props.profile;
     const users = useSelector(selectUsers);
-    const componentList = list.map((uuid: string) => <Link to={`/profile/${uuid}`}>{users[uuid].name}</Link>);
+    const componentList = list.map((uuid: string) =>
+        <Link to={`/profile/${uuid}`}>{users[uuid].name}</Link>
+    );
 
     return (
         <div>
-            <Link to={`/profile/${profileUUID}`}><button>Назад</button></Link>
+            <Link to={`/profile/${profileUUID}`}>
+                <button>Назад</button>
+            </Link>
             <div>
                 {componentList}
             </div>
