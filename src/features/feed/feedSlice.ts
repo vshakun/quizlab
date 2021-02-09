@@ -31,11 +31,15 @@ export const feedSlice = createSlice({
             } else {
                 state.posts[postUUID].liked.push(userUUID);
             }
+        },
+        removePost: (state, action:PayloadAction<string> ) => {
+            const postUUID = action.payload;
+            delete state.posts[postUUID];
         }
     }
 });
 
-export const {addPost, likePost} = feedSlice.actions;
+export const {addPost, likePost, removePost} = feedSlice.actions;
 
 export const selectPosts = (state: RootState) => {
     return state.feed.posts;

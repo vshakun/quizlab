@@ -20,5 +20,12 @@
     color: red;
     border: 0;
     background: none;
-    size: 20px;
+}
+
+.hiddenButton {
+    display: none;
+}
+
+.button {
+
 }
