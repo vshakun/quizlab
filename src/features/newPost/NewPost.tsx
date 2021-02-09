@@ -1,15 +1,13 @@
 import React, {useState} from "react";
-import {Link, Redirect} from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {Redirect} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
-import {addUserIfNotExists, selectCurrentUserUUID} from "../auth/authSlice";
+import {selectCurrentUserUUID} from "../auth/authSlice";
 import {IPost} from "../post/Post";
-import { addPost } from "../feed/feedSlice";
-import styles from "../auth/Auth.module.css";
+import {addPost} from "../feed/feedSlice";
+import {ProfileButton} from "../profileButton/ProfileButton";
 
-export function NewPost(props: any) {
+export function NewPost() {
     const dispatch = useDispatch();
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const [text, setText] = useState('');
@@ -46,9 +44,7 @@ export function NewPost(props: any) {
                     Опубликовать
                 </button>
             </div>
-            <Link to={`/profile/${currentUserUUID}`}>
-                <button>В профиль</button>
-            </Link>
+            <ProfileButton userUUID={currentUserUUID}/>
         </div>
     )
 }

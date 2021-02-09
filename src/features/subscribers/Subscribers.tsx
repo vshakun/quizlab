@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import React from "react";
 import {PeopleList} from "../peopleList/PeopleList";
 import {useSelector} from "react-redux";
@@ -8,8 +8,8 @@ export function Subscribers() {
     const {profileUUID} = useParams();
     const users = useSelector(selectUsers);
     const userSubscribers = Object.entries(users)
-        .filter(([uuid, user]) => user.subscriptions.includes(profileUUID))
-        .map(([uuid, user]) => uuid);
+        .filter(([, user]) => user.subscriptions.includes(profileUUID))
+        .map(([uuid]) => uuid);
 
     return (
         <PeopleList list={userSubscribers} profile={profileUUID} />

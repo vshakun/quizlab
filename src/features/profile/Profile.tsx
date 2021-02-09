@@ -1,48 +1,29 @@
-import {Post, IPost} from '../post/Post';
+import {Post} from '../post/Post';
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentUserUUID, selectUsers, subscribeUser, logOut} from "../auth/authSlice";
-import {useParams, Link, Redirect} from "react-router-dom";
-import {addPost, selectPosts} from "../feed/feedSlice";
-import styles from "./Profile.module.css";
-
-// TODO: consider using type
-interface IProfile {
-    name: string,
-    subscriptions: number,
-    subscribed: number,
-    posts: {
-        [key: string]: IPost;
-    }
-}
+import {useSelector} from "react-redux";
+import {selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
+import {Link, Redirect, useParams} from "react-router-dom";
+import {selectPosts} from "../feed/feedSlice";
+import {SubscribeUnsubscribeLogoutButton} from "../subscribeUnsubscribeLogoutButton/SubscribeUnsubscribeLogoutButton";
 
 export function Profile() {
-    const dispatch = useDispatch();
     const {profileUUID} = useParams();
-
     const users = useSelector(selectUsers);
     const posts = useSelector(selectPosts);
 
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     if (!currentUserUUID) {
-        return (
-            <div>
-                <Redirect to='/'/>
-            </div>
-        )
+        return <Redirect to='/'/>
     }
 
-    const userName = users[profileUUID].name;
-    const userSubscriptionCount = users[profileUUID].subscriptions.length;
     const userSubscribersCount = Object.entries(users).reduce((count, [_, user]) => {
         return user.subscriptions.includes(profileUUID) ? count + 1 : count;
     }, 0);
 
-    const userPosts = Object.fromEntries(Object.entries(posts)
-        .filter(([_, post]) => post.author === profileUUID));
+    const userPosts = Object.entries(Object.fromEntries(Object.entries(posts)
+        .filter(([, post]) => post.author === profileUUID)));
 
-    const postsArray = Object.entries(userPosts);
-    postsArray.sort(([k1, v1], [k2,v2]) => {
+    userPosts.sort(([, v1], [, v2]) => {
         if (v1.timeStamp < v2.timeStamp) {
             return 1;
         } else if (v1.timeStamp > v2.timeStamp) {
@@ -52,41 +33,18 @@ export function Profile() {
         }
     })
 
-    const listPosts = postsArray.map(([uuid, post]) => {
-        return <Post key={uuid} uuid={uuid} post={post} />
+    const listPosts = userPosts.map(([uuid, post]) => {
+        return <Post key={uuid} uuid={uuid} post={post}/>
     });
 
     return (
         <div>
             <p>
-                {userName},
-                <Link to={`/subscriptions/${profileUUID}`}>{userSubscriptionCount} подписок</Link>,
-                <Link to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link></p>
-            <div>
-                <button className={currentUserUUID === profileUUID ? styles.hiddenButton : styles.button}
-                    onClick={
-                        () => {
-                            dispatch(subscribeUser(profileUUID));
-                        }
-                    }
-                >
-                    {
-                        users[currentUserUUID].subscriptions.includes(profileUUID) ?
-                        'Отписаться' : 'Подписаться'
-                    }
-                </button>
-                <Link to={'/'}>
-                    <button className={currentUserUUID !== profileUUID ? styles.hiddenButton : styles.button}
-                            onClick={
-                                () => {
-                                    dispatch(logOut());
-                                }
-                            }
-                    >
-                        Выйти
-                    </button>
-                </Link>
-            </div>
+                {users[profileUUID].name},
+                <Link to={`/subscriptions/${profileUUID}`}>{users[profileUUID].subscriptions.length} подписок</Link>,
+                <Link to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link>
+            </p>
+            <SubscribeUnsubscribeLogoutButton currentUserUUID={currentUserUUID} profileUUID={profileUUID}/>
             <ul>
                 {listPosts}
             </ul>

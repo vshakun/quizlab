@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {v4} from 'node-uuid';
 
-interface IUser {
+export interface IUser {
     name: string,
     subscriptions: Array<string>
 }
