@@ -32,7 +32,7 @@ export const feedSlice = createSlice({
                 state.posts[postUUID].liked.push(userUUID);
             }
         },
-        removePost: (state, action:PayloadAction<string> ) => {
+        removePost: (state, action: PayloadAction<string>) => {
             const postUUID = action.payload;
             delete state.posts[postUUID];
         }
