@@ -4,12 +4,14 @@ import {PeopleList} from "../peopleList/PeopleList";
 import {useSelector} from "react-redux";
 import {selectUsers} from "../auth/authSlice";
 
-export function Subscriptions() {
+export function Subscribers() {
     const {profileUUID} = useParams();
     const users = useSelector(selectUsers);
-    const userSubscriptions = users[profileUUID].subscriptions;
+    const userSubscribers = Object.entries(users)
+        .filter(([uuid, user]) => user.subscriptions.includes(profileUUID))
+        .map(([uuid, user]) => uuid);
 
     return (
-        <PeopleList list={userSubscriptions} profile={profileUUID} />
+        <PeopleList list={userSubscribers} profile={profileUUID} />
     )
 }

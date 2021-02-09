@@ -57,8 +57,8 @@ export function Profile() {
 
     return (
         <div>
-            <p>{userName}, <a href={'/subscriptions'}>{userSubscriptionCount} подписок</a>, <a
-                href={'/subscribers'}>{userSubscribersCount} подписчиков</a></p>
+            <p>{userName}, <Link to={`/subscriptions/${profileUUID}`}>{userSubscriptionCount} подписок</Link>, <Link
+                to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link></p>
             <div>
                 <button className={currentUserUUID === profileUUID ? styles.hiddenButton : styles.button}
                     onClick={
