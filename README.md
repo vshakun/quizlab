@@ -1,3 +1,17 @@
+# TODO:
+
+- [ ] CSS
+- [X] Количество подписчиков в профиле
+- [X] Страница со списком подписчиков/подписок
+- [X] Кнопка "Выйти"
+- [X] Переход на профиль автора при клике на его имя
+- [X] Удаление поста
+- [ ] Рефакторинг и приведение кода к перечисленным в тестовом правилам
+- [ ] Проверить код линтером
+- [ ] Объединить сторы и поправить reducers
+- [ ] Кнопка "Назад" в профиле при переходе с подписок
+- [ ] Возможность менять имя в профиле текущего пользователя (необязательно)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
