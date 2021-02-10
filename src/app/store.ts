@@ -1,4 +1,4 @@
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import rootReducer from '../features/store/storeSlice';
 import {loadState, saveState} from '../localStorage';
 import throttle from 'lodash/throttle';
