@@ -1,9 +1,8 @@
 import {Post} from '../post/Post';
 import React from "react";
 import {useSelector} from "react-redux";
-import {selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
+import {selectCurrentUserUUID, selectUsers, selectPosts} from "../store/storeSlice";
 import {Link, Redirect, useParams} from "react-router-dom";
-import {selectPosts} from "../feed/feedSlice";
 import {SubscribeUnsubscribeLogoutButton} from "../subscribeUnsubscribeLogoutButton/SubscribeUnsubscribeLogoutButton";
 
 export function Profile() {

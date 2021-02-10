@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectUsers} from "../auth/authSlice";
+import {selectUsers} from "../store/storeSlice";
 
 export function PeopleList(props: any) {
     const list = props.list;

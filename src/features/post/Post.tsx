@@ -1,7 +1,6 @@
 import React from "react";
-import {selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
+import {selectCurrentUserUUID, selectUsers, likePost, removePost} from "../store/storeSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {likePost, removePost} from '../feed/feedSlice';
 import styles from './Post.module.css';
 import {Link} from 'react-router-dom';
 

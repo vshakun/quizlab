@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import React from "react";
 import {PeopleList} from "../peopleList/PeopleList";
 import {useSelector} from "react-redux";
-import {selectUsers} from "../auth/authSlice";
+import {selectUsers} from "../store/storeSlice";
 
 export function Subscriptions() {
     const {profileUUID} = useParams();

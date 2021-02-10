@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {Post} from '../post/Post';
 import {useSelector} from 'react-redux';
-import {selectPosts} from './feedSlice';
-import {selectCurrentUserUUID, selectUsers} from "../auth/authSlice";
+import {selectCurrentUserUUID, selectUsers, selectPosts} from "../store/storeSlice";
 import {Redirect} from 'react-router-dom';
 import styles from './Feed.module.css';
 import {ProfileButton} from "../profileButton/ProfileButton";

@@ -2,9 +2,8 @@ import React, {useState} from "react";
 import {Redirect} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
-import {selectCurrentUserUUID} from "../auth/authSlice";
+import {selectCurrentUserUUID, addPost} from "../store/storeSlice";
 import {IPost} from "../post/Post";
-import {addPost} from "../feed/feedSlice";
 import {ProfileButton} from "../profileButton/ProfileButton";
 
 export function NewPost() {
