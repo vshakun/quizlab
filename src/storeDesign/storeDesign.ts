@@ -18,7 +18,7 @@ interface ISubscription {
     whom: string,
 }
 
-export interface StoreDesign4 {
+export interface StoreDesign {
     users: {
         [key: string]: IUser;
     };
@@ -34,7 +34,7 @@ export interface StoreDesign4 {
     }
 }
 
-export const storeDesign4Example: StoreDesign4 = {
+export const storeDesign4Example: StoreDesign = {
     users: {
         '9101fd32-f2d5-484e-9109-ad19318f3d04': {
             name: 'Kate',
