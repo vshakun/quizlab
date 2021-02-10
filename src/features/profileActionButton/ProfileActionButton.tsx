@@ -1,15 +1,18 @@
-import styles from "./SubscribeUnsubscribeLogoutButton.module.css";
-import {logOut, selectUsers, subscribeUser} from "../store/storeSlice";
-import {Link} from "react-router-dom";
+import styles from "./ProfileActionButton.module.css";
+import {logOut, selectCurrentUserUUID, selectUsers, subscribeUser} from "../store/storeSlice";
+import {Link, Redirect} from "react-router-dom";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-export function SubscribeUnsubscribeLogoutButton(props: any) {
+function ProfileActionButton(props: any) {
+    const profileUUID = props.profileUUID;
     const dispatch = useDispatch();
     const users = useSelector(selectUsers);
 
-    const currentUserUUID = props.currentUserUUID;
-    const profileUUID = props.profileUUID;
+    const currentUserUUID = useSelector(selectCurrentUserUUID);
+    if (!currentUserUUID) {
+        return <Redirect to='/'/>
+    }
 
     return (
         <div>
@@ -36,3 +39,5 @@ export function SubscribeUnsubscribeLogoutButton(props: any) {
         </div>
     )
 }
+
+export default ProfileActionButton;

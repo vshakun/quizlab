@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import React from "react";
 
-export function ProfileButton (props: any) {
+function ProfileButton (props: any) {
     return (
         <div>
             <button>
@@ -10,3 +10,5 @@ export function ProfileButton (props: any) {
         </div>
     )
 }
+
+export default ProfileButton;

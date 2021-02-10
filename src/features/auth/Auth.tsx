@@ -4,7 +4,7 @@ import {addUserIfNotExists} from '../store/storeSlice';
 import styles from './Auth.module.css';
 import {Link} from 'react-router-dom';
 
-export function Auth() {
+function Auth() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
 
@@ -38,3 +38,5 @@ export function Auth() {
         </div>
     );
 }
+
+export default Auth;

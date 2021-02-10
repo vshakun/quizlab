@@ -1,11 +1,11 @@
-import {Post} from '../post/Post';
+import Post from '../post/Post';
 import React from "react";
 import {useSelector} from "react-redux";
 import {selectCurrentUserUUID, selectUsers, selectPosts} from "../store/storeSlice";
 import {Link, Redirect, useParams} from "react-router-dom";
-import {SubscribeUnsubscribeLogoutButton} from "../subscribeUnsubscribeLogoutButton/SubscribeUnsubscribeLogoutButton";
+import ProfileActionButton from "../profileActionButton/ProfileActionButton";
 
-export function Profile() {
+function Profile() {
     const {profileUUID} = useParams();
     const users = useSelector(selectUsers);
     const posts = useSelector(selectPosts);
@@ -43,7 +43,7 @@ export function Profile() {
                 <Link to={`/subscriptions/${profileUUID}`}>{users[profileUUID].subscriptions.length} подписок</Link>,
                 <Link to={`/subscribers/${profileUUID}`}>{userSubscribersCount} подписчиков</Link>
             </p>
-            <SubscribeUnsubscribeLogoutButton currentUserUUID={currentUserUUID} profileUUID={profileUUID}/>
+            <ProfileActionButton profileUUID={profileUUID} />
             <ul>
                 {listPosts}
             </ul>
@@ -58,3 +58,5 @@ export function Profile() {
         </div>
     )
 }
+
+export default Profile;

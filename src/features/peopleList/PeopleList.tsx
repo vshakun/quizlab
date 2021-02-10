@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectUsers} from "../store/storeSlice";
 
-export function PeopleList(props: any) {
+function PeopleList(props: any) {
     const list = props.list;
     const profileUUID = props.profile;
     const users = useSelector(selectUsers);
@@ -22,3 +22,5 @@ export function PeopleList(props: any) {
         </div>
     )
 }
+
+export default PeopleList;

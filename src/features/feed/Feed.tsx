@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {selectCurrentUserUUID} from "../store/storeSlice";
 import styles from './Feed.module.css';
-import {ProfileButton} from "../profileButton/ProfileButton";
-import {PostList} from "../postList/PostList";
+import ProfileButton from "../profileButton/ProfileButton";
+import PostList from "../postList/PostList";
 
-export function Feed() {
+function Feed() {
     const [subscriptionsMode, setSubscriptionsMode] = useState(false);
     const currentUserUUID = useSelector(selectCurrentUserUUID);
 
@@ -32,3 +32,5 @@ export function Feed() {
         </div>
     );
 }
+
+export default Feed;

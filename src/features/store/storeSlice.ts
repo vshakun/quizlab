@@ -1,23 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
-import {IPost} from "../post/Post";
-import {addUserIfNotExistsReducer, subscribeUserReducer, logOutReducer} from './users';
+import {addUserIfNotExistsReducer, logOutReducer, subscribeUserReducer} from './users';
 import {addPostReducer, likePostReducer, removePostReducer} from "./post";
-
-export interface IUser {
-    name: string,
-    subscriptions: Array<string>
-}
-
-export interface StoreState {
-    users: {
-        [key: string]: IUser;
-    };
-    currentUserUUID: string | null; // string if logged in, null otherwise
-    posts: {
-        [key: string]: IPost;
-    };
-}
+import {StoreState} from "./StoreState";
 
 const initialState: StoreState = {
     users: {},
@@ -25,7 +10,7 @@ const initialState: StoreState = {
     posts: {}
 };
 
-export const storeSlice = createSlice({
+const storeSlice = createSlice({
     name: 'store',
     initialState,
     reducers: {
@@ -39,7 +24,6 @@ export const storeSlice = createSlice({
 });
 
 export const {addUserIfNotExists, subscribeUser, logOut, addPost, likePost, removePost} = storeSlice.actions;
-
 
 export const selectUsers = (state: RootState) => state.users;
 export const selectCurrentUserUUID = (state: RootState) => state.currentUserUUID;

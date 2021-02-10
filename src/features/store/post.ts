@@ -1,7 +1,7 @@
 import {PayloadAction} from "@reduxjs/toolkit";
-import {IPost} from "../post/Post";
 import {v4} from "node-uuid";
-import {StoreState} from "./storeSlice";
+import {IPost} from "./IPost";
+import {StoreState} from "./StoreState";
 
 export function addPostReducer(state: StoreState, action: PayloadAction<IPost>) {
     const post = action.payload;

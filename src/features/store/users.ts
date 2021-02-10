@@ -1,6 +1,6 @@
 import {PayloadAction} from "@reduxjs/toolkit";
 import {v4} from "node-uuid";
-import {StoreState} from './storeSlice';
+import {StoreState} from "./StoreState";
 
 export function addUserIfNotExistsReducer(state: StoreState, action: PayloadAction<string>) {
     const name = action.payload;

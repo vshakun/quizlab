@@ -3,10 +3,10 @@ import {Redirect} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
 import {selectCurrentUserUUID, addPost} from "../store/storeSlice";
-import {IPost} from "../post/Post";
-import {ProfileButton} from "../profileButton/ProfileButton";
+import ProfileButton from "../profileButton/ProfileButton";
+import {IPost} from "../store/IPost";
 
-export function NewPost() {
+function NewPost() {
     const dispatch = useDispatch();
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const [text, setText] = useState('');
@@ -47,3 +47,5 @@ export function NewPost() {
         </div>
     )
 }
+
+export default NewPost;

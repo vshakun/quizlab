@@ -1,10 +1,10 @@
 import {useParams} from "react-router-dom";
 import React from "react";
-import {PeopleList} from "../peopleList/PeopleList";
+import PeopleList from "../peopleList/PeopleList";
 import {useSelector} from "react-redux";
 import {selectUsers} from "../store/storeSlice";
 
-export function Subscribers() {
+function Subscribers() {
     const {profileUUID} = useParams();
     const users = useSelector(selectUsers);
     const userSubscribers = Object.entries(users)
@@ -15,3 +15,5 @@ export function Subscribers() {
         <PeopleList list={userSubscribers} profile={profileUUID} />
     )
 }
+
+export default Subscribers;

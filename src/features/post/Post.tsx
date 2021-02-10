@@ -1,17 +1,10 @@
 import React from "react";
-import {selectCurrentUserUUID, selectUsers, likePost, removePost} from "../store/storeSlice";
+import {likePost, removePost, selectCurrentUserUUID, selectUsers} from "../store/storeSlice";
 import {useDispatch, useSelector} from "react-redux";
 import styles from './Post.module.css';
 import {Link} from 'react-router-dom';
 
-export interface IPost {
-    author: string,
-    text: string,
-    liked: Array<string>,
-    timeStamp: number
-}
-
-export function Post(props: any) {
+function Post(props: any) {
     const dispatch = useDispatch();
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const users = useSelector(selectUsers);
@@ -46,3 +39,5 @@ export function Post(props: any) {
         </div>
     )
 }
+
+export default Post;

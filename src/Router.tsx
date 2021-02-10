@@ -1,13 +1,13 @@
 import React from "react";
 import {BrowserRouter, Route} from "react-router-dom";
-import {Auth} from "./features/auth/Auth";
-import {Feed} from "./features/feed/Feed";
-import {Profile} from "./features/profile/Profile";
-import {NewPost} from './features/newPost/NewPost';
-import {Subscriptions} from "./features/subscriptions/Subscriptions";
-import {Subscribers} from "./features/subscribers/Subscribers";
+import Auth from "./features/auth/Auth";
+import Feed from "./features/feed/Feed";
+import Profile from "./features/profile/Profile";
+import NewPost from './features/newPost/NewPost';
+import Subscriptions from "./features/subscriptions/Subscriptions";
+import Subscribers from "./features/subscribers/Subscribers";
 
-export function Router() {
+function Router() {
     return (
         <BrowserRouter>
             <div>
@@ -21,3 +21,5 @@ export function Router() {
         </BrowserRouter>
     );
 }
+
+export default Router;

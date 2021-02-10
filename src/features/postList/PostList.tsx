@@ -1,10 +1,10 @@
 import React from "react";
-import {Post} from "../post/Post";
+import Post from "../post/Post";
 import {useSelector} from "react-redux";
 import {selectCurrentUserUUID, selectPosts, selectUsers} from "../store/storeSlice";
 import {Redirect} from "react-router-dom";
 
-export function PostList(props: any) {
+function PostList(props: any) {
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const users = useSelector(selectUsers);
     const posts = useSelector(selectPosts);
@@ -42,3 +42,5 @@ export function PostList(props: any) {
         </div>
     )
 }
+
+export default PostList;
