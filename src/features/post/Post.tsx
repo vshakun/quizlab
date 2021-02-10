@@ -11,11 +11,6 @@ export interface IPost {
     timeStamp: number
 }
 
-export interface IUserPost {
-    userUUID: string,
-    postUUID: string
-}
-
 export function Post(props: any) {
     const dispatch = useDispatch();
     const currentUserUUID = useSelector(selectCurrentUserUUID);
@@ -34,11 +29,7 @@ export function Post(props: any) {
             <p className={styles.text}>Понравилось: {likedNames.join(', ')}</p>
             <button className={styles.heart}
                 onClick={() => {
-                    const userPost: IUserPost = {
-                        userUUID: currentUserUUID || '',
-                        postUUID: postUUID
-                    };
-                    dispatch(likePost(userPost));
+                    dispatch(likePost(postUUID));
                 }}
             >
                 ❤
