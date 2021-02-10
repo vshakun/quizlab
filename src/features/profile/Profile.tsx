@@ -29,7 +29,7 @@ function Profile() {
         }
     })
 
-    const listPosts = userPosts.map(([uuid, post]) => {
+    const componentList = userPosts.map(([uuid, post]) => {
         return <Post key={uuid} uuid={uuid} post={post}/>
     });
 
@@ -38,7 +38,7 @@ function Profile() {
             <ProfileHeader profileUUID={profileUUID} />
             <ProfileActionButton profileUUID={profileUUID} />
             <ul>
-                {listPosts}
+                {componentList}
             </ul>
             <ProfileFooter />
         </div>

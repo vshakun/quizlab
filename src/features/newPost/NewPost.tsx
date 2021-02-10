@@ -12,11 +12,7 @@ function NewPost() {
     const [text, setText] = useState('');
 
     if (!currentUserUUID) {
-        return (
-            <div>
-                <Redirect to='/'/>
-            </div>
-        )
+        return <Redirect to='/'/>
     }
 
     return (
@@ -25,7 +21,7 @@ function NewPost() {
                 <input
                     type="text"
                     value={text}
-                    onChange={e => setText(e.target.value)}
+                    onChange={event => setText(event.target.value)}
                 />
                 <button
                     onClick={

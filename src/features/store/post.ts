@@ -17,11 +17,13 @@ export function likePostReducer(state: StoreState, action: PayloadAction<string>
         return;
     }
 
-    if (state.posts[postUUID].liked.includes(currentUserUUID)) {
-        state.posts[postUUID].liked = state.posts[postUUID].liked
+    const post = state.posts[postUUID];
+
+    if (post.liked.includes(currentUserUUID)) {
+        post.liked = post.liked
             .filter(uuid => uuid !== currentUserUUID);
     } else {
-        state.posts[postUUID].liked.push(currentUserUUID);
+        post.liked.push(currentUserUUID);
     }
 }
 

@@ -4,10 +4,11 @@ import {useSelector} from "react-redux";
 import {selectUsers} from "../store/storeSlice";
 
 function PeopleList(props: any) {
-    const list = props.list;
+    const people = props.people;
     const profileUUID = props.profile;
+
     const users = useSelector(selectUsers);
-    const componentList = list.map((uuid: string) =>
+    const componentList = people.map((uuid: string) =>
         <Link to={`/profile/${uuid}`}>{users[uuid].name}</Link>
     );
 

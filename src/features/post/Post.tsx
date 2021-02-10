@@ -8,10 +8,11 @@ function Post(props: any) {
     const dispatch = useDispatch();
     const currentUserUUID = useSelector(selectCurrentUserUUID);
     const users = useSelector(selectUsers);
+
     const postUUID = props.uuid;
     const authorUUID = props.post.author;
     const authorName = users[authorUUID].name;
-    const likedNames = props.post.liked.map((uuid: string) => users[uuid].name);
+    const likedUserNames = props.post.liked.map((uuid: string) => users[uuid].name);
 
     return (
         <div className={styles.post}>
@@ -19,20 +20,20 @@ function Post(props: any) {
                 <p className={styles.author}>{authorName}</p>
             </Link>
             <p className={styles.text}>{props.post.text}</p>
-            <p className={styles.text}>Понравилось: {likedNames.join(', ')}</p>
-            <button className={styles.heart}
+            <p className={styles.text}>Понравилось: {likedUserNames.join(', ')}</p>
+            <button
+                className={styles.heart}
                 onClick={() => {
                     dispatch(likePost(postUUID));
                 }}
             >
                 ❤
             </button>
-            <button className={currentUserUUID === authorUUID ? styles.button : styles.hiddenButton}
-                    onClick={
-                        () => {
-                            dispatch(removePost(postUUID));
-                        }
-                    }
+            <button
+                className={currentUserUUID === authorUUID ? styles.button : styles.hiddenButton}
+                onClick={() => {
+                    dispatch(removePost(postUUID));
+                }}
             >
                 ❌
             </button>

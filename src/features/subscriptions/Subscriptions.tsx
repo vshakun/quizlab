@@ -10,7 +10,7 @@ function Subscriptions() {
     const userSubscriptions = users[profileUUID].subscriptions;
 
     return (
-        <PeopleList list={userSubscriptions} profile={profileUUID} />
+        <PeopleList people={userSubscriptions} profile={profileUUID} />
     )
 }
 

@@ -25,11 +25,13 @@ export function subscribeUserReducer(state: StoreState, action: PayloadAction<st
         return;
     }
 
-    if (state.users[currentUserUUID].subscriptions.includes(subscriptionUserUUID)) {
-        state.users[currentUserUUID].subscriptions = state.users[currentUserUUID].subscriptions
+    const currentUser = state.users[currentUserUUID];
+
+    if (currentUser.subscriptions.includes(subscriptionUserUUID)) {
+        currentUser.subscriptions = currentUser.subscriptions
             .filter(uuid => uuid !== subscriptionUserUUID);
     } else {
-        state.users[currentUserUUID].subscriptions.push(subscriptionUserUUID);
+        currentUser.subscriptions.push(subscriptionUserUUID);
     }
 }
 

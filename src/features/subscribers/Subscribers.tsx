@@ -7,12 +7,13 @@ import {selectUsers} from "../store/storeSlice";
 function Subscribers() {
     const {profileUUID} = useParams();
     const users = useSelector(selectUsers);
+
     const userSubscribers = Object.entries(users)
         .filter(([, user]) => user.subscriptions.includes(profileUUID))
         .map(([uuid]) => uuid);
 
     return (
-        <PeopleList list={userSubscribers} profile={profileUUID} />
+        <PeopleList people={userSubscribers} profile={profileUUID} />
     )
 }
 

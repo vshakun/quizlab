@@ -6,6 +6,7 @@ import {selectUsers} from "../store/storeSlice";
 function ProfileHeader(props: any) {
     const users = useSelector(selectUsers);
     const profileUUID = props.profileUUID;
+
     const userSubscribersCount = Object.entries(users).reduce((count, [_, user]) => {
         return user.subscriptions.includes(profileUUID) ? count + 1 : count;
     }, 0);
